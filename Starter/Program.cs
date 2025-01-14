@@ -40,7 +40,7 @@ for (int i = 0; i < maxPets; i++)
             animalNickname = "gus";
             suggestedDonation = "49,99";
             break;
-        
+
         case 2:
             animalSpecies = "cat";
             animalID = "c3";
@@ -60,7 +60,7 @@ for (int i = 0; i < maxPets; i++)
             animalNickname = "Lion";
             suggestedDonation = "";
             break;
-        
+
         default:
             animalSpecies = "";
             animalID = "";
@@ -79,10 +79,11 @@ for (int i = 0; i < maxPets; i++)
     ourAnimals[i, 3] = "Nickname: " + animalNickname;
     ourAnimals[i, 4] = "Physical description: " + animalPhysicalDescription;
     ourAnimals[i, 5] = "Personality: " + animalPersonalityDescription;
-    ourAnimals[i, 6] = "Suggested Donation: "  + suggestedDonation;
-    
-    if (!decimal.TryParse(suggestedDonation, out decimalDonation)){
-        decimalDonation = 45,00m; // if suggestedDonation NOT a number, default to 45.00
+    ourAnimals[i, 6] = "Suggested Donation: " + suggestedDonation;
+
+    if (!decimal.TryParse(suggestedDonation, out decimalDonation))
+    {
+        decimalDonation = 45.00m; // if suggestedDonation NOT a number, default to 45.00
     }
     ourAnimals[i, 6] = $"Suggested Donation: {decimalDonation:C2}";
 }
@@ -115,7 +116,7 @@ do
                 if (ourAnimals[i, 0] != "ID #: ")
                 {
                     Console.WriteLine();
-                    for (int j = 0; j < 6; j++)
+                    for (int j = 0; j < 7; j++)
                     {
                         Console.WriteLine(ourAnimals[i, j]);
                     }
@@ -128,7 +129,18 @@ do
 
         case "2":
             // Display all dogs with a specified characteristic
-            Console.WriteLine("\nUNDER CONSTRUCTION - please check back next month to see progress.");
+            string dogCharacteristic = "";
+
+            while (dogCharacteristic == "")
+            {
+                // have the user eneter physical characteristics to search for
+                Console.WriteLine($"\nEnter one desired dog characteristics to search for");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    dogCharacteristic = readResult.ToLower().Trim();
+                }
+            }
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
